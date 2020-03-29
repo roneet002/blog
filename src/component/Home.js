@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Button} from 'react-bootstrap'
 
 
  function Home(){
@@ -11,7 +12,7 @@ import React, {useState, useEffect} from 'react'
     return (
         <div>
             <h1>Home Component {count}</h1>
-            <button onClick={()=>{setCount(count-1)}}>count increase</button>
+            <Button onClick={()=>{setCount(count-1)}}>count increase</Button>
         </div>
     )
 }

@@ -1,52 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Home from './component/Home';
+import RestaurantCreate from './component/RestaurantCreate'
+import RestaurantDetail from './component/RestaurantDetail'
+import RestaurantList from './component/RestaurantList'
+import RestaurantSearch from './component/RestaurantSearch'
+import RestaurantUpdate from './component/RestaurantUpdate'
+import {Nav, Navbar} from 'react-bootstrap'
+
+
+
+
+import {Link, Route, BrowserRouter as Router} from 'react-router-dom'
+
+
 
 export default class App extends Component{
-constructor(){
-super()
-this.state={
-user:null,
-password:null
-}
-}
- sbt=()=>{
-  user = this.state.user;
-  password =this.state.password
-this.setState({
 
-  
-})
-
-}
-users=(event)=>{
-this.setState({
-  user:event.target.value
-})
-}
-password=(event)=>{
-  this.setState({
-    password:event.target.value
-  })
-}
-
+ 
   render(){
 
     return (
       <div className="App">
+
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           
-
-          <Home />
           
-          <input type="text" onChange={(event)=>{this.users(event)}} />
-          <input type="password"  onChange={(event)=>{this.password(event)}} />          
-          <button onClick={()=>{this.sbt()}}>Form submit</button>
+        <Router>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="#home">Restaurant List</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    
+    <Nav className="ml-auto">
+    <Link  to='/'>Home</Link>
+      <Link to='/RestaurantCreate'>Restaurant Create</Link>
+      <Link to='/RestaurantDetail'>Restaurant Detail</Link>
+      <Link to='/RestaurantList'>Restaurant List</Link>
+      <Link to='/RestaurantSearch'>Restaurant Search</Link>
+    </Nav>
+    
+  </Navbar.Collapse>
+</Navbar>
+<Route path='/RestaurantCreate'><RestaurantCreate /></Route>
+<Route path='/RestaurantDetail'><RestaurantDetail/></Route>
+<Route path='/RestaurantList'><RestaurantList/></Route>
+<Route path='/RestaurantSearch'><RestaurantSearch/></Route>
+<Route path='/RestaurantUpdate/:id' render={props=>(<RestaurantUpdate {...props} />)}></Route>
+<Route path='/' exact><Home /></Route>
 
-        {this.state.user}
-        {this.state.password}
+
+
+</Router>
+
+          
         </header>
       </div>
     );
